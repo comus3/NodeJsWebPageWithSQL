@@ -1,4 +1,4 @@
-const express = require('express');
+import express from "express";
 const app = express();
 app.use(express.static("public"));
 
@@ -8,7 +8,7 @@ app.use(express.urlencoded({extended:true}));
 
 app.use(express.static('public'));
 
-app.post('/', (request,response)=>{
+app.post('/',async function (request,response){
 
     if (request.body.something != null){
         //do something
@@ -16,7 +16,7 @@ app.post('/', (request,response)=>{
 })
 
 
-app.get('/',(request,response)=>{
+app.get('/',async function (request,response){
     if (request.query.something != null){
         //do something
     }
