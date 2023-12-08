@@ -1,9 +1,8 @@
 import mysql from 'mysql2/promise';
 import bluebird from 'bluebird';
+import connection from "./createConnection.js"
 
- /**
-    * @typedef {{ [field: string]: any }} Payload
-    */
+
 /**
  * Wrapper to prepare and execute a MySQL query
  * @param {string} prefix - SELECT FROM/UPDATE/DELETE FROM
@@ -11,7 +10,7 @@ import bluebird from 'bluebird';
  * @param {Payload} where - Object describing the where clause
  * @returns {Promise<Payload[]>}
  */
-async query(prefix, set = {}, where = {}) {
+async function query(prefix, set = {}, where = {}) {
     let query = prefix;
     let values = [];
 
@@ -41,6 +40,7 @@ async query(prefix, set = {}, where = {}) {
 }
 
 
+
 export default class Model{
     
     /**
@@ -55,8 +55,9 @@ export default class Model{
      */
     static primary = [];
 
-   
-
+    /**
+    * @typedef {{ [field: string]: any }} Payload
+    */
     /**
    * Primary key, as set on the model
    * @type {string[]}
