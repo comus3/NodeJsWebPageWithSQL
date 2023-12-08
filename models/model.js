@@ -1,7 +1,9 @@
 import mysql from 'mysql2/promise';
 import bluebird from 'bluebird';
 
-
+ /**
+    * @typedef {{ [field: string]: any }} Payload
+    */
 /**
  * Wrapper to prepare and execute a MySQL query
  * @param {string} prefix - SELECT FROM/UPDATE/DELETE FROM
@@ -53,9 +55,7 @@ export default class Model{
      */
     static primary = [];
 
-    /**
-    * @typedef {{ [field: string]: any }} Payload
-    */
+   
 
     /**
    * Primary key, as set on the model
