@@ -10,14 +10,17 @@ app.use(express.static('public'));
 
 app.post('/', (request,response)=>{
 
-    //do something
+    if (request.body.something != null){
+        //do something
+    }
 })
 
 
 app.get('/',(request,response)=>{
-    //do something
+    if (request.query.something != null){
+        //do something
+    }
 })
-
 
 app.listen(3000, function(){
     console.log("Server ok");
