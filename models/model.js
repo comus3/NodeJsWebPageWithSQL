@@ -2,6 +2,43 @@ import mysql from 'mysql2/promise';
 import bluebird from 'bluebird';
 
 
+/**
+ * Wrapper to prepare and execute a MySQL query
+ * @param {string} prefix - SELECT FROM/UPDATE/DELETE FROM
+ * @param {Payload} set - Object containing values to update or insert in a record
+ * @param {Payload} where - Object describing the where clause
+ * @returns {Promise<Payload[]>}
+ */
+async query(prefix, set = {}, where = {}) {
+    let query = prefix;
+    let values = [];
+
+    if (Object.keys(set).length) {
+    query += ' SET';
+    query += Object.keys(set).map(key => {
+        values.push(set[key]);
+        return ` \`${key}\` = ?`
+    }).join(' AND');
+    }
+
+    if (Object.keys(where).length) {
+    query += ' WHERE';
+    query += Object.keys(where).map(key => {
+        values.push(where[key]);
+        return ` \`${key}\` = ?`
+    }).join(' AND');
+    }
+    console.log('Executing query', query, values);
+    try {
+    const [rows] = await connection.execute(query, values);
+    return /** @type{Payload[]} */ (rows);
+    } catch(error) {
+    console.error(error);
+    return [];
+    }
+}
+
+
 export default class Model{
     
     /**
@@ -19,42 +56,6 @@ export default class Model{
     /**
     * @typedef {{ [field: string]: any }} Payload
     */
-
-    /**
-     * Wrapper to prepare and execute a MySQL query
-     * @param {string} prefix - SELECT FROM/UPDATE/DELETE FROM
-     * @param {Payload} set - Object containing values to update or insert in a record
-     * @param {Payload} where - Object describing the where clause
-     * @returns {Promise<Payload[]>}
-     */
-    async query(prefix, set = {}, where = {}) {
-        let query = prefix;
-        let values = [];
-    
-        if (Object.keys(set).length) {
-        query += ' SET';
-        query += Object.keys(set).map(key => {
-            values.push(set[key]);
-            return ` \`${key}\` = ?`
-        }).join(' AND');
-        }
-    
-        if (Object.keys(where).length) {
-        query += ' WHERE';
-        query += Object.keys(where).map(key => {
-            values.push(where[key]);
-            return ` \`${key}\` = ?`
-        }).join(' AND');
-        }
-        console.log('Executing query', query, values);
-        try {
-        const [rows] = await connection.execute(query, values);
-        return /** @type{Payload[]} */ (rows);
-        } catch(error) {
-        console.error(error);
-        return [];
-        }
-    }
 
     /**
    * Primary key, as set on the model
