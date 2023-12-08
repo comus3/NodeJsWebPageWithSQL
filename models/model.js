@@ -2,8 +2,6 @@ import mysql from 'mysql2/promise';
 import bluebird from 'bluebird';
 
 
-
-
 export default class Model{
     
     /**
