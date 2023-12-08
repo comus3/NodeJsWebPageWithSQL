@@ -1,71 +1,49 @@
-# SQL Query Handler for JavaScript
+# Node.js Web Page with SQL Template
 
-This JavaScript project provides a convenient and simple way to handle SQL queries in your applications. It consists of a concrete class that can be easily extended for each table in your database.
+This Node.js template provides a foundation for developing web applications with pre-installed SQL query handling using the [js-SQLquerymaker-Tmpl8](https://github.com/comus3/js-SQLquerymaker-Tmpl8) library. It simplifies the process of interacting with SQL databases in your Node.js application.
+
+## SQL Query Handling
+
+The SQL query handling functionality is implemented using the [js-SQLquerymaker-Tmpl8](https://github.com/comus3/js-SQLquerymaker-Tmpl8) library. Refer to the documentation in the provided link for details on how to use this library to construct SQL queries efficiently.
 
 ## Getting Started
 
-To integrate this project into your repository, follow these steps:
+1. Clone this repository to your local machine:
 
-1. Add this project as a git template:
+    ```bash
+    git clone https://github.com/your-username/your-repo.git
+    ```
 
-   ```bash
-   git remote add template https://github.com/your-template-repo.git
-   git fetch template
-   git merge --allow-unrelated-histories template/main
-   ```
+2. Install the required packages:
 
-2. Update the `createConnection.js` file:
+    ```bash
+    npm install
+    ```
 
-   Change the database name to match your specific database in the `createConnection.js` file.
+3. Start writing your HTML in the `home.ejs` file located in the `views` folder.
 
-3. Set the SQL password:
+4. To add additional pages, create `.ejs` files in the `views` folder.
 
-   Open the `pwd.txt` file and input your SQL password.
+5. Add CSS and client-side JavaScript in the `public` folder.
 
-## Usage
+## Running the Server
 
-To use this SQL query handler, follow these steps:
+To start your server, run the following command in your terminal:
 
-1. Create a class for each table you need to interact with.
-
-2. Make these classes inherit from the provided `model` class.
-
-3. Utilize the following methods on instances of your new inherited class objects:
-
-   - `update`: Update a record in the database.
-   - `load`: Load a single record from the database.
-   - `loadmany`: Load multiple records from the database.
-   - `save`: Save a new record to the database.
-   - `delete`: Delete a record from the database.
-
-### Example:
-
-```javascript
-const { Model } = require('./model');
-
-class User extends Model {
-  constructor() {
-    super('users'); // 'users' should be the name of your table
-  }
-
-  // Additional methods or properties specific to the 'users' table can be added here.
-}
-
-// Usage
-const user = new User();
-user.load(1); // Load user with ID 1
-user.update(1, { name: 'John Doe' }); // Update user with ID 1
-// ... and so on
+```bash
+node server.js
 ```
 
-## Contributions
+This will start the server, and you can access your application at [http://localhost:3000](http://localhost:3000) in your web browser.
 
-Feel free to contribute by submitting issues or pull requests. Any feedback or improvements are highly appreciated!
+## Directory Structure
 
-## License
+- `views`: Contains EJS files for your HTML pages.
+- `public`: Place your CSS and client-side JavaScript files here.
+- `server.js`: The main server file.
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+## Have Fun!
 
----
+Feel free to customize and extend this template to suit your project needs. Explore the provided packages and start building your web application with ease.
 
-**Note:** This code is almost entirely copied from [Khoi Nguyen](https://github.com/khoi-nguyen/LW3L-orm/blob/main/models/Model.js), and I'm giving him all the credits for the original implementation.
+Happy coding!
