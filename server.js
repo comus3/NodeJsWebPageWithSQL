@@ -8,7 +8,7 @@ app.use(express.urlencoded({extended:true}));
 
 app.use(express.static('public'));
 
-app.post('/',async function (request,response)=>{
+app.post('/',async function (request,response){
 
     if (request.body.something != null){
         //do something
@@ -16,7 +16,7 @@ app.post('/',async function (request,response)=>{
 })
 
 
-app.get('/',async function (request,response)=>{
+app.get('/',async function (request,response){
     if (request.query.something != null){
         //do something
     }
