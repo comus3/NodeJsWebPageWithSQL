@@ -172,8 +172,4 @@ export default class Model {
       await query(`UPDATE ${this.constructor.table}`, this._payload, this._primaryKey);
     }
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 43269ddd84e55a42e27e755dde295a7bce903bb7
